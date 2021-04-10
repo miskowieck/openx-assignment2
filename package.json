@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/miskowieck/openx-assignment2#readme",
   "devDependencies": {
     "axios": "^0.21.1",
+    "jest": "^26.6.3",
     "node-fetch": "^2.6.1"
   }
 }
