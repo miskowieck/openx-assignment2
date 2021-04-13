@@ -1,11 +1,11 @@
 # Openx Assignment 2
 
-##Run scrypt
+## Run scrypt
 ```
 npm start
 ```
 
-##Tests
+## Tests
 Run tests
 ```
 npm tests
