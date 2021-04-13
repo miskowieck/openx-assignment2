@@ -13,6 +13,6 @@ npm start
 ## Tests
 Run tests
 ```
-npm tests
+npm test
 ```
 
