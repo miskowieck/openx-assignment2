@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {nearestuser,multititles,distance,countposts} = require("./functions");
+const {nearestuser,multititles,distance,countposts,combine} = require("./functions");
 const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
 const USERS_URL =  'https://jsonplaceholder.typicode.com/users';
 
@@ -10,10 +10,7 @@ axios.all([
   ]).then(axios.spread((response1, response2) => {
     let posts = response1.data;
     let users = response2.data;
-    users.forEach((user)=> user.posts=[]);
-    posts.forEach((post)=>{
-        users[post.userId-1].posts.push(post);
-    });
+    combine(users,posts);
     users.forEach((user)=>{
         console.log("Nearest to "+user.username+" is "+nearestuser(user,users).username);
     });

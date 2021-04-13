@@ -1,4 +1,5 @@
-function countposts(users){
+
+function countposts(users){ //returns how many posts each user wrote
     let ans = [];
     users.forEach((user)=>{
         ans.push(user.username+" napisał(a) "+user.posts.length+" postów");
@@ -6,7 +7,14 @@ function countposts(users){
     return ans;
 }
 
-function distance(lat1, lon1, lat2, lon2) {
+function combine(users,posts){
+    users.forEach((user)=> user.posts=[]);
+    posts.forEach((post)=>{
+        users[post.userId-1].posts.push(post);
+    });
+}
+
+function distance(lat1, lon1, lat2, lon2) { //calculate distance of two points with their latitude and longitude coordinates
     let p = 0.017453292519943295;    // Math.PI / 180
     let c = Math.cos;
     let a = 0.5 - c((lat2 - lat1) * p)/2 + 
@@ -16,7 +24,7 @@ function distance(lat1, lon1, lat2, lon2) {
     return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
   }
 
-function multititles(posts){
+function multititles(posts){ //returns array of titles that appear more than once
     let ans = [];
     let titles = {};
     posts.forEach((post)=>{
@@ -28,7 +36,7 @@ function multititles(posts){
     return ans;
 }
 
-function nearestuser(user,users){
+function nearestuser(user,users){ //finds the nearest user of given user
     let dist = null;
     let nearest = null;
     users.forEach((us)=>{
@@ -47,3 +55,4 @@ exports.nearestuser = nearestuser;
 exports.multititles = multititles;
 exports.distance = distance;
 exports.countposts = countposts;
+exports.combine = combine;
