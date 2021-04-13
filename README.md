@@ -1,6 +1,11 @@
 # Openx Assignment 2
 
-## Run scrypt
+## Download modules
+```
+npm install
+```
+
+## Run script
 ```
 npm start
 ```
