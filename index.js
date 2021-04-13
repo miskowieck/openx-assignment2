@@ -10,7 +10,11 @@ axios.all([
   ]).then(axios.spread((response1, response2) => {
     let posts = response1.data;
     let users = response2.data;
-    combine(users,posts);
+    combine(users,posts); //combines posts with users
+    let counts = countposts(users);
+    console.log(counts);
+    let multis = multititles(posts); //posts whose titles aren't unique
+    console.log(multis);
     users.forEach((user)=>{
         console.log("Nearest to "+user.username+" is "+nearestuser(user,users).username);
     });
