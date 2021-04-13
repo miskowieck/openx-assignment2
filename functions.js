@@ -14,14 +14,18 @@ function combine(users,posts){
     });
 }
 
-function distance(lat1, lon1, lat2, lon2) { //calculate distance of two points with their latitude and longitude coordinates
-    let p = 0.017453292519943295;    // Math.PI / 180
+function distance(user1,user2) { //calculate distance between two users, result in kilometers
+    let lat1 = user1.address.geo.lat;
+    let lat2 = user2.address.geo.lat;
+    let lon1 = user1.address.geo.lng;
+    let lon2 = user2.address.geo.lng;
+    let p = Math.PI/180    // Math.PI / 180
     let c = Math.cos;
     let a = 0.5 - c((lat2 - lat1) * p)/2 + 
             c(lat1 * p) * c(lat2 * p) * 
             (1 - c((lon2 - lon1) * p))/2;
   
-    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    return 12742 * Math.asin(Math.sqrt(a)); 
   }
 
 function multititles(posts){ //returns array of titles that appear more than once
@@ -40,7 +44,7 @@ function nearestuser(user,users){ //finds the nearest user of given user
     let dist = null;
     let nearest = null;
     users.forEach((us)=>{
-        let disttemp = distance(us.address.geo.lat,us.address.geo.lng,user.address.geo.lat,user.address.geo.lng);
+        let disttemp = distance(us,user);
         if(us.id!=user.id){
             if(dist===null || dist>disttemp){
                 dist = disttemp;
