@@ -18,31 +18,42 @@ let users = [
 
 combine(users,posts);
 
-test("Should return array with strings that appear more than once: ['abc','aaa']",()=>{
-    expect(multititles(posts)).toStrictEqual(["abc","aaa"]);
+describe('Posts without unique titles', function () {
+    test("Should return array with strings that appear more than once: ['abc','aaa']",()=>{
+        expect(multititles(posts)).toStrictEqual(["abc","aaa"]);
+    });
+  });
+
+describe('Distance calculating', function () {
+    test("Should return distance 1807.20",()=>{
+        expect(distance(users[0],users[2])).toBeCloseTo(1807.2,0);
+    });
+
+    test("Should return distance 8897.85",()=>{
+        expect(distance(users[1],users[3])).toBeCloseTo(8897.85,0);
+    });
+
+    test("Should return distance 8123.66",()=>{
+        expect(distance(users[1],users[2])).toBeCloseTo(8123.66,0);
+    });
 });
 
-test("Should return distance 1807.20",()=>{
-    expect(distance(users[0],users[2])).toBeCloseTo(1807.2,0);
-});
+describe('Finding nearest user', function () {
+    test("Should return nearest user with id 3",()=>{
+        expect(nearestuser(users[1],users).id).toBe(3);
+    })
+    
+    test("Should return nearest user with id 3",()=>{
+        expect(nearestuser(users[2],users).id).toBe(1);
+    })
+  });
 
-test("Should return distance 8897.85",()=>{
-    expect(distance(users[1],users[3])).toBeCloseTo(8897.85,0);
-});
 
-test("Should return distance 8123.66",()=>{
-    expect(distance(users[1],users[2])).toBeCloseTo(8123.66,0);
-});
+describe('Posts counter', function () {
+    test("Should return array with posts counts",()=>{
+        expect(countposts(users)).toStrictEqual(["Bret napisał(a) 2 postów", "Antonette napisał(a) 2 postów", 
+        "Kamren napisał(a) 1 postów", "Elwyn.Skiles napisał(a) 1 postów",])
+    })
+  });
 
-test("Should return nearest user with id 3",()=>{
-    expect(nearestuser(users[1],users).id).toBe(3);
-})
 
-test("Should return nearest user with id 3",()=>{
-    expect(nearestuser(users[2],users).id).toBe(1);
-})
-
-test("Should return array with posts counts",()=>{
-    expect(countposts(users)).toStrictEqual(["Bret napisał(a) 2 postów", "Antonette napisał(a) 2 postów", 
-    "Kamren napisał(a) 1 postów", "Elwyn.Skiles napisał(a) 1 postów",])
-})
